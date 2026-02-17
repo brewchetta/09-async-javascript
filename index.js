@@ -198,7 +198,59 @@ async function getCatPic() {
 
 // 2. Create a <ul> which is initially empty along with a <button> which reads "Get 5 cat facts". When the button is clicked, fetch 5 cat facts using query params and append them as <li> to the <ul>.
 
-// 3. Create a <select> for 4 of the languages specified in the API docs. When the "Get Random Cat Fact" button is pressed, it gets the cat fact in that specific language now. Choose english as the de facto language.
+// 3. Create a <select> for 4 of the languages specified in the API docs. When the "Get Random Cat Fact" button is pressed, it gets the cat fact in the language specified by the <select>. Choose english as the de facto language.
+
+let language = "eng"
+
+// NUMBER 1:
+
+const randomCatFactPTag = document.querySelector("#random-cat-fact")
+const randomCatFactButton = document.querySelector("#random-cat-fact-button")
+
+async function getRandomCatFact() {
+    const URL = `https://meowfacts.herokuapp.com/?lang=${language}`
+
+    const response = await fetch(URL)
+    const catData = await response.json()
+
+    const catFact = catData.data[0]
+    randomCatFactPTag.textContent = catFact
+}
+
+randomCatFactButton.addEventListener("click", getRandomCatFact)
+
+// NUMBER 2:
+
+const multipleCatFactsContainer = document.querySelector("#multiple-cat-facts-container")
+const multipleCatFactsButton = document.querySelector("#multiple-cat-facts-button")
+
+async function getFiveRandomCatFacts() {
+    const URL = "https://meowfacts.herokuapp.com/?count=5"
+
+    const response = await fetch(URL)
+    const catData = await response.json()
+
+    const factsArray = catData.data
+
+    factsArray.forEach(fact => {
+        const li = document.createElement("li")
+        li.textContent = fact
+        multipleCatFactsContainer.append(li)
+    })
+}
+
+multipleCatFactsButton.addEventListener("click", getFiveRandomCatFacts)
+
+// NUMBER 3:
+
+const languageSelect = document.querySelector("#language-select")
+
+languageSelect.addEventListener("change", handleSelectLanguage)
+
+function handleSelectLanguage(event) {
+    language = event.target.value
+}
+
 
 //////////////////////////////////
 
@@ -206,9 +258,9 @@ async function getCatPic() {
 
 // for this afternoon we're going to start using a special terminal program called node.js
 
-// run this command:
+// run this command in the terminal:
 //      node --version
-// to see if it's installed and if it isn't go to nodejs.org and follow install instructions for your OS
+// to see if it's installed and if it throws an error go to nodejs.org and follow install instructions for your OS
 
 // for mac it's easiest to install using `brew` commands
 // for windows the `choco` command can be a good go to

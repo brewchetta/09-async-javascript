@@ -86,3 +86,104 @@ const whatWeGetBack = fetch("https://icanhazdadjoke.com/", fetchOptions)
 // 400 - you made a bad request, for example 404 NOT FOUND
 // 500 - our server is broken
 ////////////////////////////////////////////////////
+
+
+// ASYNC / AWAIT
+
+async function getDadJoke() {
+    const options = { headers: { Accept: 'application/json' } }
+
+    const response = await fetch("https://icanhazdadjoke.com/", options)
+
+    const data = await response.json()
+
+    const joke = data.joke
+
+    const dadJokePTag = document.querySelector("#dad-joke")
+    dadJokePTag.textContent = joke
+}
+
+// functions with an async keyword have asynchronous elements
+
+// await will wait for an async action to finish before moving to the next line
+
+// parse - translate from one language to another
+// from JSON to Javascript
+
+////////////////////////////////////////////////////
+// JSON - JAVASCRIPT OBJECT NOTATION
+// not technically javascript
+// 
+// EXAMPLE JSON:
+// {
+//     "name": "Chett",
+//     "age": 21
+// }
+//
+// great format for transmitting info over the internet
+//
+// to parse JSON into JAVASCRIPT we can use a special method .json()
+// this method is async for some reason
+////////////////////////////////////////////////////
+
+
+async function getISSData() {
+    const URL = "https://api.wheretheiss.at/v1/satellites/25544"
+
+    const response = await fetch(URL)
+    const data = await response.json()
+
+    const issPosition = document.querySelector("#iss-position")
+    
+    issPosition.textContent = `LATITUDE: ${data.latitude} | LONGITUDE: ${data.longitude}`
+}
+
+
+async function getCharizardData() {
+    const URL = "https://pokeapi.co/api/v2/pokemon/charizard"
+
+    const response = await fetch(URL)
+    const data = await response.json()
+
+    // this API just happens to have charizard's "sprite" a.k.a. it's pixel image
+    const spriteURL = data.sprites.front_default
+
+    const charizardImg = document.querySelector("#charizard-img")
+
+    charizardImg.src = spriteURL
+}
+
+async function getMorePokemon() {
+    const URL = "https://pokeapi.co/api/v2/pokemon?limit=150"
+
+    const response = await fetch(URL)
+    // wait until done ^^^ is done
+
+    const data = await response.json()
+    // wait until ^^^ is done
+
+    console.log(data.results)
+}
+
+
+////////////////////////////////////////////////////
+// QUERY PARAMS
+// at the end of a URL we can add extra info
+// for example https://pokeapi.co/api/v2/pokemon?limit=150
+// the ?limit=150 means we will get 150 items from the server
+// query params are used differently for different APIs
+// some APIs don't even use query params!
+////////////////////////////////////////////////////
+
+
+async function getCatPic() {
+    const URL = "https://cataas.com/cat?json=true"
+
+    const response = await fetch(URL)
+    const data = await response.json()
+
+    const imageUrl = data.url
+
+    const catImg = document.querySelector("#cat-img")
+    catImg.src = imageUrl
+}

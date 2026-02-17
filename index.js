@@ -187,3 +187,15 @@ async function getCatPic() {
     const catImg = document.querySelector("#cat-img")
     catImg.src = imageUrl
 }
+
+
+// EXERCISES
+
+// Using https://meowfacts.herokuapp.com/
+// Docs https://github.com/wh-iterabb-it/meowfacts
+
+// 1. Create a <p> tag that will be filled with a random fact later. Additionally create a <button> with the text "Get Random Cat Fact". When the button is clicked, fetch from the API a random cat fact and change <p> so that it reads whatever fact you got.
+
+// 2. Create a <ul> which is initially empty along with a <button> which reads "Get 5 cat facts". When the button is clicked, fetch 5 cat facts using query params and append them as <li> to the <ul>.
+
+// 3. Create a <select> for 4 of the languages specified in the API docs. When the "Get Random Cat Fact" button is pressed, it gets the cat fact in that specific language now. Choose english as the de facto language.

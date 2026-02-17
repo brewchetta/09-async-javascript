@@ -199,3 +199,16 @@ async function getCatPic() {
 // 2. Create a <ul> which is initially empty along with a <button> which reads "Get 5 cat facts". When the button is clicked, fetch 5 cat facts using query params and append them as <li> to the <ul>.
 
 // 3. Create a <select> for 4 of the languages specified in the API docs. When the "Get Random Cat Fact" button is pressed, it gets the cat fact in that specific language now. Choose english as the de facto language.
+
+//////////////////////////////////
+
+// IF YOU FINISH EARLY...
+
+// for this afternoon we're going to start using a special terminal program called node.js
+
+// run this command:
+//      node --version
+// to see if it's installed and if it isn't go to nodejs.org and follow install instructions for your OS
+
+// for mac it's easiest to install using `brew` commands
+// for windows the `choco` command can be a good go to
